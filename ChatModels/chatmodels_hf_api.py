@@ -9,6 +9,6 @@ llm = HuggingFaceEndpoint(
 )
 
 model = ChatHuggingFace(llm = llm)
-result = model.invoke("hi")
+result = model.invoke("what is your training cutoff date")
 
 print(result.content)
