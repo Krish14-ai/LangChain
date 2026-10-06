@@ -9,6 +9,6 @@ llm = HuggingFaceEndpoint(
 )
 
 model = ChatHuggingFace(llm = llm)
-result = model.invoke("what is your training cutoff date")
+result = model.invoke("what is the capital of India?")
 
 print(result.content)
