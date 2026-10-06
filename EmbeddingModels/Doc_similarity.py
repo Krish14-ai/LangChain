@@ -18,7 +18,8 @@ query = "What is the capital of India"
 docs_embeddings = embedding.embed_documents(docs)
 query_embed = embedding.embed_query(query)
 
-socres = cosine_similarity([query_embed], docs_embeddings)[0]
+# Convert embeddings to NumPy arrays so sklearn can accept them as a valid matrix-like input.
+socres = cosine_similarity(np.asarray([query_embed]), np.asarray(docs_embeddings))[0]
 
 ## 1) Enumerate will give indexes to the scores,
 ## 2) List will give one single list
