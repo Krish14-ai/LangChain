@@ -26,4 +26,4 @@ Ensure the summary is clear, accurate, and aligned with the provided style and l
         
 )
 
-template.save("prompt_template/template_1.json")
+template.save("template_1.json")

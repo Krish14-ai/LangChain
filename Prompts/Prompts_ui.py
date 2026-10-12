@@ -21,13 +21,14 @@ length_input = st.selectbox("No of Lines", ["3-4 lines short notes", "5-10 line 
 ## creating a Prompt Template 
 template = load_prompt("template_1.json")
 
-## Fill the place holders in "input_varianbles"
-prompt = template.invoke({
+
+if st.button("submit") : 
+        chain = template | model ## Chaining 
+        
+        result = chain.invoke({
         'paper_input' : paper_input,
         'style_input' :style_input,
         'length_input' : length_input
         })
-
-if st.button("submit") : 
-        result = model.invoke(prompt)
+        
         st.write(result.text)
