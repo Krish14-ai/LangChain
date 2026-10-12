@@ -25,7 +25,7 @@ else:
     )
 
 # Extract token usage
-total_tokens = response.usage_metadata["total_tokens"]
+total_tokens = (response.usage_metadata or {}).get("total_tokens", 0)
 
 print("Message:", message)
 print("Total Tokens Used:", total_tokens)
