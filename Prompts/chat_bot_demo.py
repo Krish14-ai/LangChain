@@ -4,7 +4,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-model = GoogleGenerativeAI(model = "gemini-3.7-flash")
+model = GoogleGenerativeAI(
+    model = "gemini-3.7-flash",
+    thinking_level="low",
+    max_retries=1
+    )
 
 chat_history = [
     SystemMessage(content = "You are a Helpful AI Assistant")
@@ -18,4 +22,6 @@ while True:
         break
     
     result = model.invoke(chat_history)
-    chat_history.append(AIMessage(content = result.content))
+    chat_history.append(AIMessage(content = result))
+    
+    print("AI :- ",result)
