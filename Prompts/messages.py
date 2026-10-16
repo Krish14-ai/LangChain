@@ -6,3 +6,13 @@ load_dotenv()
 
 model = GoogleGenerativeAI(model = "gemini-3.7-flash")
 
+messages = [
+    SystemMessage(content = "You are a helpful assistant"),
+    HumanMessage(content = "tell me about lengchain")     
+]
+
+result = model.invoke(messages)
+
+messages.append(AIMessage(content = result))
+
+print(messages)
