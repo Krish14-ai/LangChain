@@ -1,15 +1,16 @@
 
 from dotenv import load_dotenv
 import logging
-from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain.chat_models import init_chat_model
 
 # Hide the Google GenAI AFC warning
 logging.getLogger("google_genai.models").setLevel(logging.ERROR)
 
 load_dotenv()
 
-llm = ChatGoogleGenerativeAI(
-    model="gemini-3.8-flash"
+llm = init_chat_model(
+    "google_genai:gemini-3.5-flash",
+    
 )  
 
 response = llm.invoke("Greet me.")
