@@ -6,7 +6,11 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-model = ChatGoogleGenerativeAI(model="gemini-3.8-flash")
+model = ChatGoogleGenerativeAI(
+        model="gemini-3.8-flash",
+        thinking_level="low",
+        max_retries=1
+        )
 
 st.header("ChatBot")
 
