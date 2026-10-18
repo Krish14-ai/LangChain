@@ -7,4 +7,4 @@ model = init_chat_model('google_genai:gemini-3.8-flash')
 
 result = model.invoke('hi')
 
-print(result)
+print(result.text)
