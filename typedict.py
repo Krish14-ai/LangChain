@@ -4,4 +4,4 @@ class Person(TypedDict):
     name : str
     age : int
 
-new_perosn = Person
+new_perosn : Person = {'name' : 'Krish'}
