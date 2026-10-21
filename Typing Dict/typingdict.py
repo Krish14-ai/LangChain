@@ -10,3 +10,5 @@ me = Person({
     'age' : 21,
     'gender' : 'male'
 })
+
+print(me)
