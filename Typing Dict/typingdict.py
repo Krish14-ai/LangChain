@@ -5,3 +5,8 @@ class Person(Dict):
     age : int
     gender : str
     
+me = Person({
+    'name' : 'krish',
+    'age' : 21,
+    'gender' : 'male'
+})
