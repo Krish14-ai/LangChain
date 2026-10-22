@@ -7,3 +7,12 @@ load_dotenv()
 model = init_chat_model(
     'google_genai:gemini-3.8-flash'
 )
+
+# Schema
+class Review(TypedDict): 
+    summary : str 
+    sentiment : str
+    
+structured_model = model.with_structured_output(Review)
+
+result= structured_model.invoke("This Nike works considerably well. It secretly improves my basketball by a lot.")
