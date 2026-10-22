@@ -1,6 +1,7 @@
 from langchain.chat_models import init_chat_model 
 from dotenv import load_dotenv
-from typing import TypedDict, Annotated
+from typing import TypedDict, Annotated,Optional, Literal
+from pydantic import BaseModel, Field
 
 load_dotenv()
 
@@ -9,13 +10,18 @@ model = init_chat_model(
 )
 
 # Schema
-class Review(TypedDict): 
-    key_themes  : Annotated[list[str], "Write down all the key themes discussed in the review in a list"]
-    summary : Annotated[str, "A brief summary of the review"]
-    sentiment : Annotated[str, "the sentiment of the review"]
-    pros : Annotated[list[str], "Extract all the Pros of the Comments in a list"]
-    cons : Annotated[list[str],"Extract all the Cons of the Comments in a list"]
+class Review(BaseModel): 
+    key_themes  : list[str] = Field( description="Write down all the key themes discussed in the review in a list")
     
+    summary : str= Field( description="A brief summary of the review")
+    
+    sentiment : Literal['positive', 'Negative'] =Field( description="the sentiment of the review")
+    
+    pros : Optional[list[str]] = Field( description="Extract all the Pros of the Comments in a list", default=None)
+    
+    cons : Optional[list[str]]= Field(description="Extract all the Cons of the Comments in a list", default= None)
+    
+    name : Optional[str] = Field(default= None, description= "name of the Reviewer")
 structured_model = model.with_structured_output(Review)
 
 result= structured_model.invoke("This Nike works considerably well. It secretly improves my basketball by a lot.")
