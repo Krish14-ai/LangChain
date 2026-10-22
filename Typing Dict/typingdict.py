@@ -1,5 +1,7 @@
 from typing import Dict
 
+# Using Typed Dict to specify keys and values which helps the Dict to
+# follow a Specific structure 
 class Person(Dict):
     name : str
     age : int
