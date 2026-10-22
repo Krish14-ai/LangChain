@@ -10,8 +10,11 @@ model = init_chat_model(
 
 # Schema
 class Review(TypedDict): 
+    key_themes  : Annotated[list[str], "Write down all the key themes discussed in the review in a list"]
     summary : Annotated[str, "A brief summary of the review"]
     sentiment : Annotated[str, "the sentiment of the review"]
+    pros : Annotated[list[str], "Extract all the Pros of the Comments in a list"]
+    cons : Annotated[list[str],"Extract all the Cons of the Comments in a list"]
     
 structured_model = model.with_structured_output(Review)
 
