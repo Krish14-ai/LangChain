@@ -1,6 +1,6 @@
 from langchain.chat_models import init_chat_model 
 from dotenv import load_dotenv
-from typing import TypedDict
+from typing import TypedDict, Annotated
 
 load_dotenv()
 
@@ -10,8 +10,8 @@ model = init_chat_model(
 
 # Schema
 class Review(TypedDict): 
-    summary : str 
-    sentiment : str
+    summary : Annotated[str, "A brief summary of the review"]
+    sentiment : Annotated[str, "the sentiment of the review"]
     
 structured_model = model.with_structured_output(Review)
 
