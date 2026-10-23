@@ -1,6 +1,8 @@
 from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
 from dotenv import load_dotenv
 from langchain_core.prompts import PromptTemplate
+from langchain_core.output_parsers import StrOutputParser
+
 
 ## What is a Parser ?
 ## A) An output parser is a tool that converts raw, unstructured outputs from Large language models into structured, usable formats like JSON, lists, CSV, etc....... .
@@ -15,9 +17,8 @@ from langchain_core.prompts import PromptTemplate
 load_dotenv()
 
 llm = HuggingFaceEndpoint(
-    repo_id= "nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-BF16",
-    task = "text-generation"
-    
+    repo_id="meta-llama/Llama-3.2-1B-Instruct",
+    task="text-generation"
 )
 
 model = ChatHuggingFace(llm = llm)
@@ -31,17 +32,29 @@ template = PromptTemplate(
     
 )
 
+# Initialize the string output parser
+parser = StrOutputParser()
 
 ## 2nd prompt -> summary
 template2 = PromptTemplate(
-    template = "Write a 5 line summary on the following text. \n\n {text}",
-    input_types= ['text']
+    template ="Write 5 line summary on the following text.\n\n {text}",
+    input_variables= ['text']
 )
 
-prompt1 = template.invoke({'topic' : 'black hole'})
-
+# Generate the report
+prompt1 = template.invoke({"topic": "black holes"})
 result = model.invoke(prompt1)
 
-prompt2 = template2.invoke({'text':result.content})
+# Convert the model output into a plain string
+report = parser.invoke(result)
 
-model.invoke(prompt2)
+# Pass the report to the second prompt
+prompt2 = template2.invoke({"text": report})
+
+# Generate the summary
+summary = model.invoke(prompt2)
+
+# Parse the final output into a string
+final_summary = parser.invoke(summary)
+
+print(final_summary)
