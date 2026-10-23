@@ -2,6 +2,7 @@ from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
 from dotenv import load_dotenv
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
+from langchain_groq import ChatGroq
 
 
 ## What is a Parser ?
@@ -16,11 +17,10 @@ from langchain_core.output_parsers import StrOutputParser
 
 load_dotenv()
 
-llm = HuggingFaceEndpoint(
-    repo_id="meta-llama/Llama-3.2-1B-Instruct",
-    task="text-generation"
+llm = ChatGroq(
+    model="llama-3.3-70b-versatile",
+    temperature=0
 )
-
 model = ChatHuggingFace(llm = llm)
 
 ## user Prompt -> LLM -> LLM opt -> Str Parser -> LLM (For a Differnt Task, ex : summarization of a report)
