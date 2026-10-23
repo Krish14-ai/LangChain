@@ -14,7 +14,7 @@ with open(path,'r') as f :
     schema = json.load(f)
 
 
-structured_model = model.with_structured_output(schema )
+structured_model = model.with_structured_output(schema)
 
 result = structured_model.invoke("This Nike works considerably well. It secretly improves my basketball by a lot.")
 
