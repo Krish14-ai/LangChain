@@ -1,0 +1,48 @@
+{
+    "title" : "Review",
+    "type" :"object",
+    "key_themes" : {
+        "type" : "array",
+        "items" : {
+            "type" : "string"
+        },
+
+    "description" : "write down all the key themes discussed in the review in a list"
+    },
+
+    "summary" : {
+        "type" : "string",
+        "description" : "summarize the whole review in 2-3 lines"
+    },
+
+    "sentiment" : {
+        "type" : "string",
+        "enum" : ["pos", "neg", "neut"],
+        "description" : "return sentiment of the review as Positive, Negative or Neutral"
+    },
+
+    "pros" : {
+        "type" : ["arrays","null"],
+        "items"  : {
+            "type" : "string"
+        },
+        "description" : "find all the pros from the review"
+        },
+
+    "cons" : {
+        "type" : ["arrays","null"],
+        "items"  : {
+            "type" : "string"
+        },
+        "description" : "find all the cons from the review"
+        },
+    
+    "name" : {
+        "type" : ["string", "null"],
+        "description" : "name of the Reviewer"
+    },
+
+    "require" : ["key_themes","summary", "sentiment" ]
+
+
+}
