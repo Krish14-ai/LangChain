@@ -2,7 +2,6 @@ from langchain.chat_models import init_chat_model
 from dotenv import load_dotenv
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
-from langchain_groq import ChatGroq
 
 
 ## What is a Parser ?
@@ -40,20 +39,11 @@ template2 = PromptTemplate(
     input_variables= ['text']
 )
 
-# Generate the report
-prompt1 = template.invoke({"topic": "black holes"})
-result = model.invoke(prompt1)
 
-# Convert the model output into a plain string
-report = parser.invoke(result)
+chain = template | model | parser | template2 | model | parser
 
-# Pass the report to the second prompt
-prompt2 = template2.invoke({"text": report})
+result2 = chain.invoke("What is a Black Hole")
 
-# Generate the summary
-summary = model.invoke(prompt2)
-
-# Parse the final output into a string
-final_summary = parser.invoke(summary)
+final_summary = chain.invoke({"topic": "black holes"})
 
 print(final_summary)
