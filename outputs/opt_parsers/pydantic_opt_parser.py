@@ -21,6 +21,29 @@ parser = PydanticOutputParser(pydantic_object= Person)
 
 template = PromptTemplate(
     template  = "Generate the name,age,nationality,city of a fictional {place} person \n {format_instruction}",
-    input_variables=['place']
-    partial_variables=['format_instruction']
+    input_variables=['place'],
+    partial_variables={'format_instruction' : parser.get_format_instructions()}
 )
+
+prompt = template.invoke({'place' : 'Indian'})
+
+## =============================================
+## normal way
+## =============================================
+
+
+# result = model.invoke(prompt)
+
+# final_result = parser.parse(result.text)
+
+# print(final_opt)
+
+## =============================================
+## Chaining Method
+## =============================================
+
+chain = template | model  | parser 
+
+final_result = chain.invoke([])
+
+print(final_result)
