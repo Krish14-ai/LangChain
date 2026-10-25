@@ -2,12 +2,14 @@ from langchain_core.output_parsers import PydanticOutputParser
 from langchain.chat_models import init_chat_model
 from langchain_core.prompts import PromptTemplate
 from dotenv import load_dotenv
+from langchain_groq import ChatGroq
 from pydantic import BaseModel, Field
 
 load_dotenv()
 
-model = init_chat_model(
-    'google_genai:gemini-3.5-flash'
+model = ChatGroq(
+    model="openai/gpt-oss-20b",
+    temperature=0
 )
 
 class Person(BaseModel):
@@ -27,6 +29,7 @@ template = PromptTemplate(
 
 prompt = template.invoke({'place' : 'Indian'})
 
+print(prompt,'\n\n')
 ## =============================================
 ## normal way
 ## =============================================
