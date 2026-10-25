@@ -1,4 +1,4 @@
-from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
+from langchain.chat_models import init_chat_model
 from dotenv import load_dotenv
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
@@ -17,11 +17,10 @@ from langchain_groq import ChatGroq
 
 load_dotenv()
 
-llm = ChatGroq(
-    model="llama-3.3-70b-versatile",
-    temperature=0
+
+model = init_chat_model(
+    'google_genai:gemini-3.5-flash'
 )
-model = ChatHuggingFace(llm = llm)
 
 ## user Prompt -> LLM -> LLM opt -> Str Parser -> LLM (For a Differnt Task, ex : summarization of a report)
 
