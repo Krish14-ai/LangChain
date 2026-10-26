@@ -24,12 +24,12 @@ template_2 = PromptTemplate(
     input_variables=['details']
 )
 
-chain_1 = template_1 | model | parser
-chain_2 = template_2 | model | parser
+chain1 = template_1 | model | parser 
+chain2 = template_2 | model | parser
 
-chain = {"details": chain_1} | chain_2
+chain = {'details' : chain1} | chain2
 
-result = chain.invoke({"topic": "LangGraph"})
+result = chain.invoke({'topic' : 'cricket'})
 
 print(result)
 
