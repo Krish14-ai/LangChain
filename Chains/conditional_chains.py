@@ -1,22 +1,41 @@
 from langchain_ollama import ChatOllama
 from langchain_core.prompts import PromptTemplate
-from langchain_core.output_parsers import StrOutputParser, PydanticOutputParser
-from dotenv import load_dotenv
+from langchain_core.output_parsers import PydanticOutputParser
+from langchain_core.runnables import RunnableBranch
 from pydantic import BaseModel, Field
 from typing import Literal
 
 model = ChatOllama(
     model="llama3.2:3b",
-    temperature=1
 )
 
-parser = StrOutputParser()
+class Feedback(BaseModel):
+    sentiment: Literal["positive", "negative"] = Field(
+        description="The sentiment of the feedback"
+    )
+
+pydantic_parser = PydanticOutputParser(
+    pydantic_object=Feedback
+)
 
 prompt_1 = PromptTemplate(
-    template = "classsify the sentiment of the following feedback as only Positive or Negative also dont add any other text : \n {feedback}",
-    input_variables= ['feedback']
+    template=(
+        "Classify the sentiment of the following feedback. "
+        "Return only the required structured output.\n"
+        "Feedback: {feedback}\n"
+        "{format_instruction}"
+    ),
+    input_variables=["feedback"],
+    partial_variables={
+        "format_instruction": pydantic_parser.get_format_instructions()
+    }
 )
 
-classifier_chain = prompt_1 | model | parser 
+classifier_chain = prompt_1 | model | pydantic_parser
 
-print(classifier_chain.invoke({'feedback' : 'this is a Good phone'}))
+result = classifier_chain.invoke({
+    "feedback": "this is a dumb ass phone"
+})
+
+print(result)
+print(result.sentiment)
