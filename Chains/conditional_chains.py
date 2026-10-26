@@ -1,7 +1,7 @@
 from langchain_ollama import ChatOllama
 from langchain_core.prompts import PromptTemplate
-from langchain_core.output_parsers import PydanticOutputParser
-from langchain_core.runnables import RunnableBranch
+from langchain_core.output_parsers import PydanticOutputParser, StrOutputParser
+from langchain_core.runnables import RunnableBranch, RunnableLambda
 from pydantic import BaseModel, Field
 from typing import Literal
 
@@ -17,6 +17,7 @@ class Feedback(BaseModel):
 pydantic_parser = PydanticOutputParser(
     pydantic_object=Feedback
 )
+parser = StrOutputParser()
 
 prompt_1 = PromptTemplate(
     template=(
@@ -33,9 +34,27 @@ prompt_1 = PromptTemplate(
 
 classifier_chain = prompt_1 | model | pydantic_parser
 
-result = classifier_chain.invoke({
-    "feedback": "this is a dumb ass phone"
-})
+## prompt for positive feedback
+prompt_pos = PromptTemplate(
+    template = "write an appropriate response to this positive feedback \n {feedback}",
+    input_variables= ['feedback']
+)
 
-print(result)
-print(result.sentiment)
+## prompt for negative feedback
+prompt_neg = PromptTemplate(
+    template = "write an appropriate response to this negative feedback \n {feedback}",
+    input_variables= ['feedback']
+)
+
+
+branch_chain = RunnableBranch(
+    (lambda x : x.sentiment == 'positive', prompt_pos | model | parser), # (condition, chain)
+    (lambda x : x.sentiment == 'negative', prompt_neg | model | parser),
+    RunnableLambda(lambda x : "couldn't find any sentiment")
+)
+
+final_chain = classifier_chain | branch_chain
+
+final_result =final_chain.invoke({'feedback' : 'this is a good phone'})
+
+print(final_result)
