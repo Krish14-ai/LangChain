@@ -22,3 +22,8 @@ prompt_2 = PromptTemplate(
     input_variables= ['text']
 )
 
+prompt_3 = PromptTemplate(
+    template = "Merge the notes and Quiz into a Single Document \n notes -> {notes}",
+    input_variables= ['notes']
+)
+
