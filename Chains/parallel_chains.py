@@ -2,6 +2,7 @@ from langchain_core.prompts import PromptTemplate
 from langchain_groq import ChatGroq
 from langchain_core.output_parsers import StrOutputParser
 from langchain_ollama import ChatOllama
+from langchain_core.runnables import RunnableParallel
 
 model1 = ChatOllama(
     model="llama3.2:3b",
@@ -27,3 +28,15 @@ prompt_3 = PromptTemplate(
     input_variables= ['notes']
 )
 
+parser = StrOutputParser()
+
+parallel_chain = RunnableParallel({
+    'notes': prompt_1 |model1 |  parser,
+    'quiz' : prompt_2 | model2 | parser
+})
+
+merge_chain = prompt_3 | model1 | parser 
+
+chain = parallel_chain | merge_chain
+
+chain.invoke({'topic' : 'black hole'})
