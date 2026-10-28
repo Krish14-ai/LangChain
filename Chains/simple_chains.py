@@ -1,13 +1,13 @@
-from langchain_groq import ChatGroq
+from langchain_ollama import ChatOllama 
 from langchain_core.prompts import PromptTemplate
 from dotenv import load_dotenv
 from langchain_core.output_parsers import StrOutputParser
 
 load_dotenv()
 
-model = ChatGroq(
-    model="openai/gpt-oss-20b",
-    temperature=0
+model = ChatOllama(
+    model="llama3.2:3b",
+    temperature=0.7
 )
 
 prompt = PromptTemplate(
@@ -23,3 +23,4 @@ result = chain.invoke({'topic' : 'cricket'})
 
 chain.get_graph().print_ascii()
 
+print(result)

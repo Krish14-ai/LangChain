@@ -57,11 +57,11 @@ merge_chain = prompt_3 | model1 | parser
 
 chain = parallel_chain | merge_chain
 
-# result = chain.invoke({
-#     "topic": text,
-#     "text": text
-# })
+result = chain.invoke({
+    "topic": text,
+    "text": text
+})
 
-# print(result)
+print(result)
 
 chain.get_graph().print_ascii()
