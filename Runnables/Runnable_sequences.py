@@ -1,7 +1,7 @@
 from langchain_ollama import ChatOllama 
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
-from langchain_core.runnables import RunnableSequence
+from langchain_core.runnables import RunnableSequence, RunnableParallel
 
 prompt_1 = PromptTemplate(
     template = "write me a poem on {topic}",
@@ -20,8 +20,7 @@ model = ChatOllama(
 
 parser = StrOutputParser()
 
-chain = RunnableSequence(prompt_1,model, parser, prompt_2, model, parser)
-
+chain = RunnableSequence(prompt_1, model, parser, prompt_2, model, parser)
 result = chain.invoke({'topic' : 'Moon'})
 
 print(result)
