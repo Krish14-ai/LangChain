@@ -53,3 +53,12 @@ Do not commit real credentials. The repository ignores `.env` files.
 
 Activate the virtual environment, change to the repository root, and run a script by its path. For example:
 
+```powershell
+python ChatModels\chatmodel_gemini.py
+python Chains\simple_chains.py
+python EmbeddingModels\Doc_similarity.py
+python outputs\opt_parsers\json_opt_parser.py
+```
+
+Choose a script in the folder that matches the concept you want to try. Many examples call a remote model or local Ollama model, so they may incur provider charges, require account access, or need a model downloaded locally.
+
