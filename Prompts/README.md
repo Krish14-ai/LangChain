@@ -98,3 +98,77 @@ prompt = FewShotPromptTemplate(
 
 This pattern is not currently used by the examples in this folder.
 
+### 6. `FewShotChatMessagePromptTemplate` — examples as chat turns
+
+For chat models, few-shot examples can be represented as human/assistant message pairs and inserted into a larger chat prompt.
+
+```python
+from langchain_core.prompts import (
+    ChatPromptTemplate,
+    FewShotChatMessagePromptTemplate,
+)
+
+examples = [
+    {"question": "What is 2 + 2?", "answer": "4"},
+]
+example_prompt = ChatPromptTemplate.from_messages([
+    ("human", "{question}"),
+    ("ai", "{answer}"),
+])
+few_shot = FewShotChatMessagePromptTemplate(
+    examples=examples,
+    example_prompt=example_prompt,
+)
+prompt = ChatPromptTemplate.from_messages([
+    ("system", "Answer questions clearly."),
+    few_shot,
+    ("human", "{question}"),
+])
+```
+
+This pattern is not currently used by the examples in this folder.
+
+### 7. Partial prompts — pre-filling some variables
+
+When part of a prompt stays the same across calls, pre-fill those variables and provide only the remaining values at invocation time.
+
+```python
+prompt = PromptTemplate.from_template(
+    "Explain {topic} for a {audience} audience."
+).partial(audience="beginner")
+
+result = prompt.invoke({"topic": "LangChain"})
+```
+
+Partial variables also appear in the serialized prompt format, although `template_1.json` currently has none.
+
+## How the research-prompt example fits together
+
+The research-summary exercise follows this flow:
+
+1. `template.py` defines instructions and the three variables.
+2. The prompt is saved to `template_1.json`.
+3. `Prompts_ui.py` loads the saved prompt and gathers values from the user.
+4. `template | model` formats the prompt and sends it to Gemini.
+5. The generated summary is displayed in the Streamlit app.
+
+The style and length choices are values passed into the prompt; they are not different prompt-template types. The instruction also asks the model not to guess when information is unavailable.
+
+## Running the examples
+
+From the repository root, run the Streamlit examples with:
+
+```powershell
+streamlit run Prompts\chatbot.py
+streamlit run Prompts\Prompts_ui.py
+```
+
+`Prompts_ui.py` loads `template_1.json` by a relative path, so launch Streamlit from the repository root. It also depends on the Gemini credentials and packages configured for the project.
+
+To regenerate the saved template, run:
+
+```powershell
+python Prompts\template.py
+```
+
+This writes `template_1.json` to the current working directory. Run it from the repository root if you want to update the file in `Prompts/`.
