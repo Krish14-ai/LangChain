@@ -62,3 +62,10 @@ python outputs\opt_parsers\json_opt_parser.py
 
 Choose a script in the folder that matches the concept you want to try. Many examples call a remote model or local Ollama model, so they may incur provider charges, require account access, or need a model downloaded locally.
 
+## Notes
+
+- Run scripts from the repository root unless a script says otherwise. `Prompts\template.py` writes `template_1.json` to the current working directory.
+- `outputs\json_schema_with_structure_opt.py` currently reads the schema from a machine-specific absolute Windows path. Update its `path` value to the location of `outputs\json_schema.json` on your machine before running it.
+- The Hugging Face embedding examples may download model files the first time they run.
+- This repository is a learning collection and does not currently define a shared application entry point or automated test suite.
+
