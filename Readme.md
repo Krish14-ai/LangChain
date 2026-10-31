@@ -13,3 +13,14 @@ I’m exploring how to give a model instructions, connect it to prompts and conv
 - **Embeddings:** Turning text and documents into vectors, and comparing those vectors to find relevant content.
 - **Structured output and parsers:** Asking models for data in defined formats, including JSON schemas and Pydantic models, and parsing string or JSON responses.
 
+## How the examples are organized
+
+- `Prompts/` — prompt templates, messages, and chatbot experiments
+- `messeges/` — conversation history and message-placeholder examples
+- `ChatModels/` — examples using different chat-model providers
+- `Chains/` — examples that connect multiple steps into workflows
+- `Runnables/` — examples of composing, passing through, and branching workflow steps
+- `EmbeddingModels/` — text and document embeddings, including a similarity-search example
+- `outputs/` — structured model responses and output-parser experiments
+
+Each script focuses on a particular idea. As I learn more, this collection will grow with new experiments and a clearer understanding of how to build LLM applications with LangChain.
