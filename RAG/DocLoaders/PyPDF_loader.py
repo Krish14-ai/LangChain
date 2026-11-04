@@ -24,4 +24,8 @@ docs = loader.load()
 
 # print(docs[0].metadata)
 
-chain = 
+chain = prompt | model | parser
+
+result = chain.invoke({'text' : docs[0].page_content})
+
+print(result)
