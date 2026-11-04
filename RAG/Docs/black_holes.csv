@@ -1,0 +1,11 @@
+name,type,mass_solar_masses,distance_light_years,constellation,discovery_year,description
+Cygnus X-1,Stellar-mass,21,7200,Cygnus,1971,First widely accepted black hole candidate; strong X-ray source in a binary system
+Sagittarius A*,Supermassive,4300000,26000,Sagittarius,1974,Central black hole of the Milky Way; imaged by the Event Horizon Telescope in 2022
+M87*,Supermassive,6500000000,55000000,Virgo,1978,First black hole ever directly imaged in 2019; powers a relativistic jet
+TON 618,Supermassive,66000000000,10400000000,Canes Venatici,1957,One of the most massive known black holes; hosts a hyper-luminous quasar
+GW150914,Stellar-mass merger,62,1300000000,Southern sky,2015,First gravitational wave detection by LIGO from two merging black holes
+V404 Cygni,Stellar-mass,9,8000,Cygnus,1989,Black hole in a binary system with a companion star; known for dramatic X-ray outbursts
+A0620-00,Stellar-mass,6.6,3000,Monoceros,1975,One of the closest known black holes to Earth
+Gaia BH1,Stellar-mass,9.6,1560,Ophiuchus,2022,Closest known black hole to Earth at time of discovery; found via Gaia astrometry
+NGC 4889,Supermassive,21000000000,308000000,Coma Berenices,2011,Central black hole of a giant elliptical galaxy in the Coma Cluster
+Messier 31 Central BH,Supermassive,140000000,2500000,Andromeda,1993,Supermassive black hole at the center of the Andromeda Galaxy

@@ -1,0 +1,21 @@
+Black Holes: An Overview
+
+A black hole is a region of spacetime where gravity is so strong that nothing, not even light, can escape from it. The boundary beyond which escape is impossible is called the event horizon.
+
+Formation
+Most stellar-mass black holes form when a massive star (typically more than about 20 times the mass of the Sun) exhausts its nuclear fuel. The core collapses under its own gravity, often accompanied by a supernova explosion. Supermassive black holes, with millions to billions of solar masses, sit at the centers of most large galaxies. How they grew so quickly is still an open research question.
+
+Structure
+The event horizon is the point of no return. At the center lies the singularity, where general relativity predicts infinite density and spacetime curvature. The Schwarzschild radius defines the size of the event horizon for a non-rotating black hole: r_s = 2GM/c^2. Rotating black holes are described by the Kerr metric and have an ergosphere, a region where spacetime itself is dragged around the black hole.
+
+Types
+Stellar-mass black holes range from about 3 to 100 solar masses. Intermediate-mass black holes range from roughly 100 to 100,000 solar masses and are rarely detected. Supermassive black holes range from about a million to billions of solar masses. Primordial black holes are hypothetical objects that may have formed in the early universe.
+
+Detection
+Black holes emit no light, so astronomers detect them indirectly: by the orbits of nearby stars, by X-rays from accretion disks, by gravitational waves from mergers (first detected by LIGO in 2015), and by direct imaging with the Event Horizon Telescope (M87* in 2019, Sagittarius A* in 2022).
+
+Hawking Radiation
+In 1974, Stephen Hawking showed that black holes should emit faint thermal radiation due to quantum effects near the event horizon. This means black holes slowly lose mass and could eventually evaporate. The effect is far too small to observe for astrophysical black holes.
+
+Famous Black Holes
+Cygnus X-1 was the first strong black hole candidate, identified in 1971. M87* was the first black hole to be imaged, in 2019. Sagittarius A* is the supermassive black hole at the center of the Milky Way, about 4 million solar masses. TON 618 is one of the most massive known, roughly 66 billion solar masses.
