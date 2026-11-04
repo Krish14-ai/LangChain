@@ -8,3 +8,20 @@ model = ChatOllama(
     temperature = 1.25
 )
 
+prompt = PromptTemplate(
+    template='Summarize the text :{text}',
+    input_variables=['text']
+)
+
+parser = StrOutputParser()
+loader = PyPDFLoader(r'RAG\Docs\black_holes.pdf')
+
+docs = loader.load()
+
+# print(docs,'\n')
+
+# print(docs[0].page_content,'\n')
+
+# print(docs[0].metadata)
+
+chain = 
