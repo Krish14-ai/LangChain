@@ -10,10 +10,11 @@ loader = PyPDFLoader(
 doc = loader.load()
 
 splitter = RecursiveCharacterTextSplitter(
-    chunk_size = 100,
-    chunk_overlap = 0
+    chunk_size = 10,
+    chunk_overlap = 0,
+    separators= [" "]
 )
 
 result = splitter.split_documents(doc)
 
-print(result[2])
+print(result[0])
