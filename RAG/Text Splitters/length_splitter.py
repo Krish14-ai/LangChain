@@ -1,5 +1,5 @@
 from langchain_text_splitters import CharacterTextSplitter
-from langchain_community.document_loaders import DirectoryLoader, PyPDFLoader
+from langchain_community.document_loaders import PyPDFLoader
 
 path = r'RAG\Books\Agentic-Artificial-Intelligence.pdf'
 
