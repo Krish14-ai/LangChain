@@ -1,5 +1,5 @@
 import warnings
-warnings.filterwarnings("ignore", category=DeprecationWarning, module="langchain_community")
+warnings.filterwarnings("ignore", message=".*langchain-community.*sunset.*")
 
 from langchain_text_splitters import RecursiveCharacterTextSplitter, Language
 from langchain_community.document_loaders import DirectoryLoader
