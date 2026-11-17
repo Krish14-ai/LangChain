@@ -6,7 +6,6 @@ load_dotenv()
 model = ChatAnthropic(
     model_name="claude-haiku-4-5",
     temperature=1
-
 )
 
 result =model.invoke("HI")
